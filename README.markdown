@@ -1,4 +1,4 @@
-# Raphaël Backward Forward plugin - 0.0.1
+# Raphaël Backward Forward plugin - 0.0.2
 
 ### What is it?
 An extension to the Raphael Vector Library.<br/>
@@ -48,6 +48,16 @@ Basic usage:
     // or
     
     paper.arrange(circle, -1);
+
+If you want action to be limited to a selection of elements, simply pass an array with those elements as the last attribute:
+
+    // arrange within a selection
+    circle.backward(1, array);
+    
+    // or
+    
+    paper.arrange(circle, -1, array);
+
 
 ### Dependencies
 - [Raphael JS](http://raphaeljs.com/)

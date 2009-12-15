@@ -1,5 +1,5 @@
 /*
- * raphael.backward-forward 0.0.1
+ * raphael.backward-forward 0.0.2
  *
  * Copyright (c) 2009 Wout Fierens
  * Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) license.
@@ -17,30 +17,36 @@ Raphael.fn.elements = function() {
 }
 
 // move an element in the stack
-Raphael.fn.arrange = function(shape, steps) {
+Raphael.fn.arrange = function(shape, steps, scope) {
   if (!parseInt(steps)) return;
-  var all = this.elements(),
-      pos = all.indexOf(shape),
-      l = all.length,
-      new_pos = pos + steps;
-  if (new_pos > l - 1)
-    shape.toFront();
-  else if (new_pos <= 0)
-    shape.toBack();
-  else if (steps > 0)
-    shape.insertAfter(all[new_pos]);
+  var elements  = scope || this.elements(),
+      pos       = elements.indexOf(shape),
+      last_pos  = elements.length - 1,
+      new_pos   = pos + steps;
+  if (new_pos > last_pos)
+    new_pos = last_pos;
+  if (new_pos <= 0)
+    new_pos = 0;
+  if (steps > 0)
+    shape.insertAfter(elements[new_pos]);
   else if (steps < 0)
-    shape.insertBefore(all[new_pos]);
+    shape.insertBefore(elements[new_pos]);
+  if (scope) {
+    scope.splice(pos, 1);
+    scope.splice(new_pos, 0, shape);
+  }
 }
 
 // move an element one step backward in the stack
-Raphael.el.backward = function(steps) {
+Raphael.el.backward = function(steps, scope) {
   steps = parseInt(steps) || 1;
-  this.paper.arrange(this, -steps);
+  this.paper.arrange(this, -steps, scope);
+  return this;
 }
 
 // move an element one step forward in the stack
-Raphael.el.forward = function(steps) {
+Raphael.el.forward = function(steps, scope) {
   steps = parseInt(steps) || 1;
-  this.paper.arrange(this, steps);
+  this.paper.arrange(this, steps, scope);
+  return this;
 }
