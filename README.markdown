@@ -6,6 +6,7 @@ It enables Raphael to send elements backward and forward by one or a given amoun
 
 ### Usage
 
+
 Create a canvas 800 × 500 at 10, 10:
 
     var paper = Raphael(10, 10, 800, 500);
