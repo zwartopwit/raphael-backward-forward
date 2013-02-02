@@ -1,4 +1,8 @@
-# Raphaël Backward Forward plugin - 0.0.2
+# Important!
+I switched from raphael to [svg.js](http://svgjs.com/) for all my vector graphics because [svg.js](http://svgjs.com/) is only a fraction of raphael's size and supports much more core SVG features. [Svg.js](http://svgjs.com/) has similar arrange functionality built-in. Therefore this plugin is no longer supported.
+
+
+## Raphaël Backward Forward plugin - 0.0.2
 
 ### What is it?
 An extension to the Raphael Vector Library.<br/>
